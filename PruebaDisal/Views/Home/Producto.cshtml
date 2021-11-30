@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PruebaDisal.Models.Product>
+
+@{
+    ViewData["Title"] = "Producto";
+}
+
+<h1>Producto</h1>
+<form id="myForm" method="post">
+    <div>
+        <p>producto ID</p> <input name="Id" />
+    </div>
+    <div>
+        <p>nombre</p> <input name="Name" />
+    </div>
+    <div>
+        <p>estado</p><select name="State" id="cars">
+            <option value="true">1</option>
+            <option value="false">0</option>
+        </select>
+    </div>
+
+    <div class="col-lg-offset-4 col-lg-8">
+        <button type="submit" class="btn btn-primary" asp-controller="Home" asp-action="saveProduct">Guardar</button>
+    </div>
+</form>
+
+<table class="">
+    <tr>
+        <th>Id </th>
+        <th>Name </th>
+        <th>State </th>
+    </tr>
+    @foreach (var p in Model)
+    {
+<tr>
+    <td>@p.Id</td>
+    <td>@p.Name</td>
+    <td>@p.State</td>
+    <td>
+        <div class="editor-field">
+            <button id="Update" type="submit" class="btn btn-primary" onclick="location.href='@Url.Action("updateProduct", "Home", p)'">Update</button>
+
+        </div>
+    </td>
+    <td>
+        <div class="editor-field">
+            <button id="delete" type="submit" class="btn btn-primary" onclick="location.href='@Url.Action("deletProduct", "Home", p)'">Delete</button>
+
+        </div>
+    </td>
+</tr>
+
+    }
+</table> 
+
